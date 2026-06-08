@@ -49,6 +49,8 @@ pakrailway/
 
 ## Setup
 
+These instructions cover local development for both application layers.
+
 1. Install backend dependencies.
 
    ```bash
