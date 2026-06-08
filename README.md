@@ -110,7 +110,7 @@ In production mode, the backend serves API routes under `/api/*` and can serve t
 ## GitHub Workflow Summary
 
 - `main` is the stable branch for release-ready work.
-- `dev` is the integration branch for reviewed development work.
+- `dev` is the integration branch where reviewed feature work is collected before release.
 - Feature branches use descriptive names such as `feature-readme-improvements` or `feature-contributing-guidelines`.
 - Pull requests should target `dev` first, include related issue links, and document checks performed.
 - After validation, `dev` can be merged into `main` for a tagged release.
