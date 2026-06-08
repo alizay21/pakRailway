@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PakRail (React + Express + MongoDB)
 
 A train booking web application.
@@ -59,3 +60,6 @@ Copy `server/.env.example` to `server/.env` and set:
 ## GitHub
 Commit **no secrets**. `server/.env` is ignored by `.gitignore`.
 
+=======
+# pakRailway
+>>>>>>> a762c5df1b1efc7644aafd2460639562321a4032
