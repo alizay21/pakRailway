@@ -32,6 +32,7 @@ Thank you for helping improve Pak Railway. This guide explains the workflow expe
 
 - Open pull requests against `dev` unless the change is an urgent release fix.
 - Link the related GitHub issue in the PR description.
+- Mention whether the change affects the frontend, backend, documentation, or repository workflow.
 - Include a concise summary of changes.
 - Include the checks performed, such as `npm run build`, route testing, or documentation review.
 - Keep PRs small enough for a reviewer to understand quickly.
