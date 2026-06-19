@@ -1,0 +1,51 @@
+# dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+.npm/
+
+# environment files
+.env
+.env.*
+server/.env
+client/.env
+server/.env.*
+client/.env.*
+!.env.example
+!server/.env.example
+!client/.env.example
+
+# build output
+dist/
+client/dist/
+server/dist/
+.vite/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# editor / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# coverage
+coverage/
+client/coverage/
+server/coverage/
+
+# local runtime data and temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# playwright
+playwright-report/
+test-results/
+build/

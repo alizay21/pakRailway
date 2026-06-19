@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "test:e2e": "playwright test --project=chromium",
+    "test:e2e:report": "playwright show-report",
+    "ci:wait": "wait-on http://localhost:5173"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "wait-on": "^9.0.10"
+  }
+}

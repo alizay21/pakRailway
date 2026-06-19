@@ -1,0 +1,18 @@
+{
+  "name": "cleandrive-backend",
+  "version": "1.0.0",
+  "description": "Backend server for CleanDrive cloud recovery signatures and metadata tracking",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  },
+  "dependencies": {
+    "cloudinary": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "helmet": "^7.1.0"
+  }
+}

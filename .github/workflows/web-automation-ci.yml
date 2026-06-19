@@ -1,0 +1,103 @@
+name: PakRail Web Automation CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  playwright-automation:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:6
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NODE_ENV: test
+      PORT: 5000
+      MONGO_URI: mongodb://127.0.0.1:27017/pakrail_test
+      JWT_SECRET: pakrail_sqe_test_secret
+      JWT_EXPIRE: 30d
+      VITE_API_URL: http://localhost:5000/api
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install root dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Install server dependencies
+        working-directory: ./server
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Install client dependencies
+        working-directory: ./client
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Seed test database
+        working-directory: ./server
+        run: |
+          if npm run | grep -q "seed"; then npm run seed; elif [ -f seed.js ]; then node seed.js; else echo "No seed script found, skipping seed step"; fi
+
+      - name: Start backend server
+        working-directory: ./server
+        run: |
+          if npm run | grep -q "start"; then npm start > ../backend.log 2>&1 & else npm run dev > ../backend.log 2>&1 & fi
+
+      - name: Start frontend server
+        working-directory: ./client
+        run: npm run dev -- --host 0.0.0.0 > ../frontend.log 2>&1 &
+
+      - name: Wait for frontend
+        run: npx wait-on http://localhost:5173 --timeout 120000
+
+      - name: Run Playwright automation tests
+        run: npx playwright test --project=chromium
+
+      - name: Upload Playwright HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pakrail-playwright-html-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload Playwright test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pakrail-playwright-test-results
+          path: test-results/
+          retention-days: 30
+
+      - name: Upload server and client logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pakrail-server-client-logs
+          path: |
+            backend.log
+            frontend.log
+          retention-days: 30

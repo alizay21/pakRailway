@@ -1,0 +1,979 @@
+{
+  "id": "eaa442db-6423-4496-af98-b0f9917a76e0",
+  "version": "2.0",
+  "name": "PakRailAutomation",
+  "url": "http://localhost:5173",
+  "tests": [
+    {
+      "id": "4c28e5ad-3c0e-4f64-95b3-be20528e60a4",
+      "name": "1. User Login with Valid Credentials",
+      "commands": [
+        {
+          "id": "a36bbb51-fd4c-4d01-b3d7-92b3ac6fe791",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "dc8c9db0-5bf0-4dbd-8c8e-690e48ab8fe4",
+          "command": "click",
+          "target": "xpath=//a[@href='/login' or text()='Login']",
+          "value": ""
+        },
+        {
+          "id": "f959d41b-160a-4dbc-b2e0-942c2ba1f2cf",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "0dc44bc6-dd13-441b-8d67-99a73f1166c1",
+          "command": "echo",
+          "target": "Screenshot: Login Page",
+          "value": ""
+        },
+        {
+          "id": "33332d53-8fe7-4a6f-87d0-7dc7a901ef89",
+          "command": "type",
+          "target": "name=email",
+          "value": "passenger@pakrail.com"
+        },
+        {
+          "id": "a93d01a6-2127-480a-af3a-818ae6a0bb9d",
+          "command": "type",
+          "target": "name=password",
+          "value": "test123"
+        },
+        {
+          "id": "f975c43a-a829-4989-87da-26b569c76ff1",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "value": ""
+        },
+        {
+          "id": "684f91da-f5fe-40d8-b962-6746b3243115",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "2a5df1e4-e59f-43fa-943e-0efc1e1831fd",
+          "command": "echo",
+          "target": "Screenshot: Successful User Login",
+          "value": ""
+        },
+        {
+          "id": "d3e3bc64-8884-4089-aac6-69c832482b15",
+          "command": "assertElementPresent",
+          "target": "xpath=//a[@href='/my-bookings' or text()='My Bookings']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "cce0ad2c-2573-44ee-b905-173117ed3d76",
+      "name": "2. User Login with Invalid Password",
+      "commands": [
+        {
+          "id": "2e180b7b-997c-4a80-94b8-3f6785394691",
+          "command": "open",
+          "target": "/login",
+          "value": ""
+        },
+        {
+          "id": "new-pause",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "fbb9194f-5806-4765-8fa2-66d91923f7ca",
+          "command": "type",
+          "target": "name=email",
+          "value": "passenger@pakrail.com"
+        },
+        {
+          "id": "03be6b17-10eb-451f-a99e-717960da8096",
+          "command": "type",
+          "target": "name=password",
+          "value": "WrongPassword123"
+        },
+        {
+          "id": "ebf0030f-8282-4dba-bef0-2c54305df536",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "value": ""
+        },
+        {
+          "id": "ddaad36e-b90d-4b55-838d-c10798c79651",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "118e6dad-1002-4f0f-9971-6713763787a6",
+          "command": "echo",
+          "target": "Screenshot: Failed User Login",
+          "value": ""
+        },
+        {
+          "id": "b27cad82-1dc2-4fe4-96e4-88af9921473a",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Login failed') or contains(text(), 'Invalid') or @class='text-red-500']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "3c865b4e-732c-42cb-9d37-def9549fe79e",
+      "name": "3. User Dashboard Access Test",
+      "commands": [
+        {
+          "id": "0870818a-a5fc-4e51-a037-0603690cb67c",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "3ae75d0c-9fe7-472e-94a9-c28c352371ce",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "ca986dd6-16ec-4781-8668-c26d21b57ab1",
+          "command": "echo",
+          "target": "Screenshot: User Dashboard",
+          "value": ""
+        },
+        {
+          "id": "8f06f02f-873f-4b60-80db-46b7ff4f747c",
+          "command": "assertElementPresent",
+          "target": "xpath=//h1[contains(text(), 'Your Journey')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "9ee3aa3f-031c-40c2-ba48-25f588c04c01",
+      "name": "4. User Train Search with Valid Route",
+      "commands": [
+        {
+          "id": "37e0e23f-4863-471d-8751-2b2ba77d05e8",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "1b62f00f-8b4e-44bd-a88e-ca0912558af5",
+          "command": "select",
+          "target": "xpath=(//select)[1]",
+          "value": "label=Lahore"
+        },
+        {
+          "id": "f4213415-c8ef-4017-b128-98e5ae343d0c",
+          "command": "select",
+          "target": "xpath=(//select)[2]",
+          "value": "label=Karachi"
+        },
+        {
+          "id": "c3f841e6-f394-478d-9fbb-afca3f55a0d8",
+          "command": "type",
+          "target": "xpath=//input[@type='date']",
+          "value": "2027-12-01"
+        },
+        {
+          "id": "0b43146c-5931-455c-8a6e-720b871dc827",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "value": ""
+        },
+        {
+          "id": "5b162f1a-76a3-4114-8a31-d6a923b9a763",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "0fdfce53-06d9-4421-98e4-a0b163f470a6",
+          "command": "echo",
+          "target": "Screenshot: Train Search Results",
+          "value": ""
+        },
+        {
+          "id": "751f3d18-8a94-4870-8139-7dbdb0cb0169",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Search Results') or contains(text(), 'Trains')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "ebe5a3b0-a5fb-4eb3-8a4d-eafd36d36e11",
+      "name": "5. Train Search Validation Test",
+      "commands": [
+        {
+          "id": "bfc39a30-5a9c-4ad8-b47a-7db949abc4af",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "fc0eb6bf-5543-4243-bb2b-514c089dd87f",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "value": ""
+        },
+        {
+          "id": "8f352a55-c3f2-45b0-8d22-b241b561ea0d",
+          "command": "pause",
+          "target": "1000",
+          "value": ""
+        },
+        {
+          "id": "07569a63-ebac-40ef-bcc2-7b8e0e5fa1e7",
+          "command": "echo",
+          "target": "Screenshot: Search Validation Messages",
+          "value": ""
+        },
+        {
+          "id": "befa5452-cd66-406c-89e3-c5e91a62b3a4",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Please select')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "28166db2-a560-414a-a774-58f4f23be652",
+      "name": "6. Train Selection Test",
+      "commands": [
+        {
+          "id": "046a76e5-f1e4-4e20-b949-cbdf4d0be240",
+          "command": "open",
+          "target": "/search?from=Lahore&to=Karachi&date=2027-12-01",
+          "value": ""
+        },
+        {
+          "id": "cb744f23-3d51-40c2-b304-8b20384912e5",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "9daf360f-2d78-4c16-ab1f-70816fa57168",
+          "command": "click",
+          "target": "xpath=(//button[contains(text(), 'Select Seats') or contains(text(), 'Book')])[1]",
+          "value": ""
+        },
+        {
+          "id": "4db8e107-109b-4644-9369-14d439d81b10",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "d151c0ff-f088-41de-a757-57bef64803d6",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Select Your Seats') or contains(text(), 'Seat Legend')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "dd7505ed-5deb-4085-9731-85314e349f8c",
+      "name": "7. Seat Selection Test",
+      "commands": [
+        {
+          "id": "35f7d7fd-4e33-4d6a-b4b0-4475d27c647d",
+          "command": "open",
+          "target": "/select-seats/6a33c1fd5457e232c7abc114",
+          "value": ""
+        },
+        {
+          "id": "3e71dbbf-8a5a-4f8f-a482-d0f00085f700",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "b28589e2-2487-486c-a653-eca3d9533f35",
+          "command": "echo",
+          "target": "Screenshot: Seat Selection",
+          "value": ""
+        },
+        {
+          "id": "de6deb24-8b2a-4796-93e5-4687c21b24a7",
+          "command": "click",
+          "target": "xpath=(//div[contains(@class, 'seat-grid')]//button[not(@disabled)])[1]",
+          "value": ""
+        },
+        {
+          "id": "87653c97-01a2-47c1-a98c-36ec82d6efa6",
+          "command": "click",
+          "target": "xpath=//button[contains(text(), 'Continue to Details')]",
+          "value": ""
+        },
+        {
+          "id": "830127cd-75c4-4af8-9745-5ee52f494617",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "5d14d442-a968-403b-acc8-68725d1ecc0d",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Passenger')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "75c4e943-690e-4d66-8d5f-ee15c4b1769e",
+      "name": "8. User Ticket Booking Flow",
+      "commands": [
+        {
+          "id": "7197a4ed-529a-4e89-9cb9-5bacaca0bab2",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "6482adfe-12b8-4d4f-9a56-4b18cb7760de",
+          "command": "type",
+          "target": "xpath=(//label[contains(text(), 'Full Name')]/following-sibling::input)[1]",
+          "value": "Alizay Test"
+        },
+        {
+          "id": "fc558918-876d-4203-8905-eb4247da297e",
+          "command": "type",
+          "target": "xpath=(//label[contains(text(), 'CNIC')]/following-sibling::input)[1]",
+          "value": "3520212345678"
+        },
+        {
+          "id": "e148dbbd-463a-4ba9-88c5-68794b0ca5b3",
+          "command": "type",
+          "target": "xpath=(//label[contains(text(), 'Age')]/following-sibling::input)[1]",
+          "value": "25"
+        },
+        {
+          "id": "69fe7554-c8d4-4909-8144-ed25b510e7b4",
+          "command": "click",
+          "target": "xpath=//button[@type='submit' and contains(text(), 'Proceed')]",
+          "value": ""
+        },
+        {
+          "id": "c18b9684-412f-4d98-becf-9defbd29b6bd",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "1750cfd3-48af-4b0c-9126-00faeb469849",
+          "command": "type",
+          "target": "name=cardNumber",
+          "value": "4242424242424242"
+        },
+        {
+          "id": "c7555374-1543-48a1-bac8-d3b524061a0d",
+          "command": "type",
+          "target": "name=cardHolder",
+          "value": "Alizay Test"
+        },
+        {
+          "id": "1d7c4221-d248-4291-99c3-8edbe8ad0454",
+          "command": "type",
+          "target": "name=expiry",
+          "value": "12/28"
+        },
+        {
+          "id": "f31badd3-bc18-4c32-95b6-f1ef696afa46",
+          "command": "type",
+          "target": "name=cvv",
+          "value": "123"
+        },
+        {
+          "id": "c34bbba8-8c75-41ed-bef8-7537c7ffa9c5",
+          "command": "click",
+          "target": "xpath=//button[contains(text(), 'Pay Now') or contains(text(), 'Confirm')]",
+          "value": ""
+        },
+        {
+          "id": "89f55fd8-3b63-460c-9250-662f03b7b2ad",
+          "command": "pause",
+          "target": "4000",
+          "value": ""
+        },
+        {
+          "id": "e03131e5-c8a1-402e-b2b4-d19981da1554",
+          "command": "echo",
+          "target": "Screenshot: Booking Confirmation",
+          "value": ""
+        },
+        {
+          "id": "335f7ebf-746f-4da0-8449-68167636c92f",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'PNR') or contains(text(), 'Success')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "279c1327-b0a2-409d-a7ca-1a25cbda077a",
+      "name": "9. Booking History Test",
+      "commands": [
+        {
+          "id": "6c8fa549-dca9-46f5-a1ee-578fe14e89eb",
+          "command": "open",
+          "target": "/my-bookings",
+          "value": ""
+        },
+        {
+          "id": "98475043-f388-4848-b6dd-b559e832667a",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "c0b56a6d-de88-453a-861e-8349197e8c8d",
+          "command": "echo",
+          "target": "Screenshot: Booking History",
+          "value": ""
+        },
+        {
+          "id": "4b00eaf9-0d3c-4034-92f2-e7b87c0e159f",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'My Bookings') or contains(text(), 'PNR')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "6752e6b2-7474-43f0-9b13-10f93dc3df4f",
+      "name": "10. User Booking Cancellation Flow",
+      "commands": [
+        {
+          "id": "9962329d-1a11-406c-83d4-ad5d1b0657d6",
+          "command": "open",
+          "target": "/my-bookings",
+          "value": ""
+        },
+        {
+          "id": "d2df60db-d15e-47f5-8a45-3b637ed9c3cf",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "f39d79e9-b41d-47f6-8516-362c6a8169cf",
+          "command": "click",
+          "target": "xpath=(//button[contains(text(), 'Cancel Booking')])[1]",
+          "value": ""
+        },
+        {
+          "id": "c48c07b8-9300-4908-a5b1-f909da128773",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "941e0ad8-8df0-4dd3-ba5c-7670b764aa38",
+          "command": "echo",
+          "target": "Screenshot: Ticket Cancellation",
+          "value": ""
+        },
+        {
+          "id": "582194f9-f64f-4a55-8c7c-f741ee6c5b61",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Cancelled') or contains(text(), 'Success')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "3f2da6e5-13a6-4255-97f8-c705bc998b95",
+      "name": "11. Logout and Session Validation",
+      "commands": [
+        {
+          "id": "3be941f9-58b7-460b-b584-d5145e9110db",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c61806ad-3a61-48e7-bc2c-6caa863a74f2",
+          "command": "click",
+          "target": "xpath=//button[contains(text(), 'Logout') or contains(@class, 'logout')]",
+          "value": ""
+        },
+        {
+          "id": "f75dae34-fb08-471f-8f83-5a34b770b245",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "dd0dda7d-8b7d-4291-9a2f-d794a274b022",
+          "command": "echo",
+          "target": "Screenshot: Logout Result",
+          "value": ""
+        },
+        {
+          "id": "04a64913-27f2-4f9d-9fd3-70ebbe689c74",
+          "command": "assertElementPresent",
+          "target": "xpath=//a[@href='/login' or text()='Login']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "1fc12d0d-7d34-4e6c-b7a6-85dfde662cad",
+      "name": "12. Admin Login with Valid Credentials",
+      "commands": [
+        {
+          "id": "0d7cbab7-5eb8-45a3-9bd7-09c983829c84",
+          "command": "open",
+          "target": "/login",
+          "value": ""
+        },
+        {
+          "id": "ad8efdf3-2996-48d5-9b01-06fcab407ecb",
+          "command": "type",
+          "target": "name=email",
+          "value": "admin@pakrail.com"
+        },
+        {
+          "id": "79d7089c-db3a-4563-b147-5c5357ae4b6c",
+          "command": "type",
+          "target": "name=password",
+          "value": "admin123"
+        },
+        {
+          "id": "652fe493-db75-4738-addf-376d15c017b4",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "value": ""
+        },
+        {
+          "id": "de2d8b85-84f6-4a86-88da-fe84579a338c",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "08b1f2e6-1110-47cd-9c7c-7565346174b3",
+          "command": "echo",
+          "target": "Screenshot: Admin Login",
+          "value": ""
+        },
+        {
+          "id": "ad8df2f4-8226-436b-b3c0-dc61245d1087",
+          "command": "assertElementPresent",
+          "target": "xpath=//a[contains(@href, '/admin') or text()='Dashboard']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "4b48f444-f575-4797-82c0-999d49ee3ab3",
+      "name": "13. Admin Dashboard Access",
+      "commands": [
+        {
+          "id": "4aac3634-849e-4bc6-8099-935ff8c9e70e",
+          "command": "open",
+          "target": "/admin",
+          "value": ""
+        },
+        {
+          "id": "6e5a6022-10f1-47eb-b0ce-902f77491168",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "0e3e563a-efac-4ea8-815f-0a7864c9bca4",
+          "command": "echo",
+          "target": "Screenshot: Admin Dashboard",
+          "value": ""
+        },
+        {
+          "id": "2ba801fc-bcd6-40c6-b18d-167d2c46da0e",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Dashboard') or contains(text(), 'Manage Trains')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "a9fe1dc2-452d-46e4-8fde-1d4852d1862a",
+      "name": "14. Admin Train Management Validation",
+      "commands": [
+        {
+          "id": "cc118853-bd76-4ace-a0d2-11f5e0ae7c44",
+          "command": "open",
+          "target": "/admin/trains",
+          "value": ""
+        },
+        {
+          "id": "c03fa8f8-5882-4412-b47e-3d2925463c16",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "725eeac7-e424-4879-b0ad-2b14816bf0bf",
+          "command": "echo",
+          "target": "Screenshot: Admin Train Management",
+          "value": ""
+        },
+        {
+          "id": "9557ca58-e641-4a1f-8a54-1cd388a16a87",
+          "command": "click",
+          "target": "xpath=//button[contains(text(), 'Add Train')]",
+          "value": ""
+        },
+        {
+          "id": "4395aadb-034a-4554-ad57-5f0c92707829",
+          "command": "pause",
+          "target": "1000",
+          "value": ""
+        },
+        {
+          "id": "f17edf3f-1efb-4e3f-96ae-7f23df57d034",
+          "command": "type",
+          "target": "name=trainName",
+          "value": "QA Test Express"
+        },
+        {
+          "id": "30c399c2-d716-4c1a-9e13-86cc9d96c9e9",
+          "command": "type",
+          "target": "name=trainNumber",
+          "value": "QA123"
+        },
+        {
+          "id": "new-1",
+          "command": "type",
+          "target": "name=from",
+          "value": "Lahore"
+        },
+        {
+          "id": "new-2",
+          "command": "type",
+          "target": "name=to",
+          "value": "Karachi"
+        },
+        {
+          "id": "new-3",
+          "command": "type",
+          "target": "name=departureTime",
+          "value": "09:00"
+        },
+        {
+          "id": "new-4",
+          "command": "type",
+          "target": "name=arrivalTime",
+          "value": "18:00"
+        },
+        {
+          "id": "new-5",
+          "command": "type",
+          "target": "name=duration",
+          "value": "9h"
+        },
+        {
+          "id": "new-6",
+          "command": "type",
+          "target": "name=date",
+          "value": "2027-12-01"
+        },
+        {
+          "id": "new-7",
+          "command": "type",
+          "target": "name=totalSeats",
+          "value": "50"
+        },
+        {
+          "id": "new-8",
+          "command": "type",
+          "target": "name=fare",
+          "value": "1500"
+        },
+        {
+          "id": "b5e2b8d9-2dd8-4b42-80d0-d9bc87169e83",
+          "command": "click",
+          "target": "xpath=//button[@type='submit' and contains(text(), 'Train')]",
+          "value": ""
+        },
+        {
+          "id": "80217bff-233b-4922-b28d-9dc26280dfac",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "f6671b2a-bdc0-40c3-9468-07f4e2486764",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'QA123') or contains(text(), 'QA Test Express')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "0a5f025b-1e04-44f0-a75d-c1802e3582f7",
+      "name": "15. Admin Add Train Validation Test",
+      "commands": [
+        {
+          "id": "5e60eeee-7cac-4787-b7b0-d5219d2024e8",
+          "command": "open",
+          "target": "/admin/trains",
+          "value": ""
+        },
+        {
+          "id": "ad8930d8-e0c2-430b-ab06-3d553bed0bff",
+          "command": "click",
+          "target": "xpath=//button[contains(text(), 'Add Train')]",
+          "value": ""
+        },
+        {
+          "id": "c737a189-74c7-44a9-9ebd-76958a8d503f",
+          "command": "pause",
+          "target": "1000",
+          "value": ""
+        },
+        {
+          "id": "5df84ca7-bd24-4fa1-91a1-9320ff322675",
+          "command": "click",
+          "target": "xpath=//button[@type='submit' and contains(text(), 'Train')]",
+          "value": ""
+        },
+        {
+          "id": "42e25430-6fbd-4dfd-9f59-ecd3d293e59e",
+          "command": "pause",
+          "target": "1000",
+          "value": ""
+        },
+        {
+          "id": "0b1962ff-9083-4403-b623-0c506d0e558f",
+          "command": "echo",
+          "target": "Screenshot: Admin Validation Messages",
+          "value": ""
+        },
+        {
+          "id": "a64a6366-a722-4e2f-9c96-c53d0d49cd9c",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'required') or @class='text-red-500']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "37d05f0f-6a87-4173-9087-b0b39fa82e19",
+      "name": "16. Admin Booking Management View",
+      "commands": [
+        {
+          "id": "18c46ef7-bb01-4648-8f85-f0f3b66230da",
+          "command": "open",
+          "target": "/admin/bookings",
+          "value": ""
+        },
+        {
+          "id": "07b648f0-0953-4b89-bb99-99b23ec5ac33",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "123ff997-468a-442d-a563-2cbf381b0951",
+          "command": "echo",
+          "target": "Screenshot: Admin Booking Management",
+          "value": ""
+        },
+        {
+          "id": "ffe22fd3-9b8a-4e2d-aaf2-e66ee0f6dc9e",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Manage Bookings') or contains(text(), 'PNR')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "b751b61d-aff2-4506-8164-5de764e22f45",
+      "name": "17. Admin User Management Test",
+      "commands": [
+        {
+          "id": "4fd41966-18b3-4a00-829b-7186c91b9858",
+          "command": "echo",
+          "target": "Feature Not Available: User Management is not present in the current routes",
+          "value": ""
+        },
+        {
+          "id": "45c7fd3c-9d68-4354-9f53-695d9ebb764e",
+          "command": "open",
+          "target": "/admin",
+          "value": ""
+        },
+        {
+          "id": "d9247561-b0f0-4472-bb90-ac56131950d5",
+          "command": "pause",
+          "target": "1000",
+          "value": ""
+        },
+        {
+          "id": "0d8961c5-3e89-4f59-aff7-0c9c376e5992",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Dashboard')]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "22141739-2190-4906-8805-1bab657d8ab6",
+      "name": "18. Admin Logout Test",
+      "commands": [
+        {
+          "id": "f854540e-fd13-4670-8d48-34c4bd631131",
+          "command": "open",
+          "target": "/admin",
+          "value": ""
+        },
+        {
+          "id": "ce26014b-7cb5-4f7d-98be-9f8e241222ac",
+          "command": "click",
+          "target": "xpath=//button[contains(text(), 'Logout')]",
+          "value": ""
+        },
+        {
+          "id": "7eecb906-1cd5-4216-a3c7-ee3d8bde3d91",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "b0d893be-8f04-4851-9af7-77d293943e91",
+          "command": "assertElementPresent",
+          "target": "xpath=//a[@href='/login' or text()='Login']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "8b4ed3b3-b0d0-4c25-a619-c6bcbab6422c",
+      "name": "19. Restricted Route Access Test",
+      "commands": [
+        {
+          "id": "0ae0f24c-3d68-4103-8b61-d4aa50cd8647",
+          "command": "open",
+          "target": "/login",
+          "value": ""
+        },
+        {
+          "id": "1df747e0-6c44-4c9e-99e9-711c45d68b23",
+          "command": "type",
+          "target": "name=email",
+          "value": "passenger@pakrail.com"
+        },
+        {
+          "id": "72341da7-3213-4512-9904-1e522be2957c",
+          "command": "type",
+          "target": "name=password",
+          "value": "test123"
+        },
+        {
+          "id": "970762e0-d989-4ce1-8adb-ce1070d96d12",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "value": ""
+        },
+        {
+          "id": "d1742d7c-8e65-46c6-bb44-1db337ef67e1",
+          "command": "pause",
+          "target": "3000",
+          "value": ""
+        },
+        {
+          "id": "70e7b2e9-fbeb-4b11-a465-960015d68a0b",
+          "command": "open",
+          "target": "/admin",
+          "value": ""
+        },
+        {
+          "id": "c9330cbd-30e4-4942-84f3-55b09ce2ffcd",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "29656865-0e9a-41ee-905a-21e4ed668de1",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'Your Journey') or @href='/login']",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "3360870a-64b1-436a-b851-f3d7d84110d8",
+      "name": "20. Navigation Menu Test",
+      "commands": [
+        {
+          "id": "4d3cf34b-c942-4288-a70b-e6acf1980383",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "6641e185-7c3a-4d29-9abb-282752749472",
+          "command": "click",
+          "target": "xpath=//a[@href='/track-pnr' or contains(text(), 'Track PNR')]",
+          "value": ""
+        },
+        {
+          "id": "4d54a5f8-7b84-421c-ab17-f46b8ae1be65",
+          "command": "pause",
+          "target": "2000",
+          "value": ""
+        },
+        {
+          "id": "9d514436-dcb0-4450-bb4c-fab0f1c96a3f",
+          "command": "assertElementPresent",
+          "target": "xpath=//*[contains(text(), 'PNR') or contains(text(), 'Track')]",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "4dfeac06-698d-4cdf-bd8b-e3d1df614c2b",
+      "name": "PakRail Complete Testing Suite",
+      "persistSession": true,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "4c28e5ad-3c0e-4f64-95b3-be20528e60a4",
+        "cce0ad2c-2573-44ee-b905-173117ed3d76",
+        "3c865b4e-732c-42cb-9d37-def9549fe79e",
+        "9ee3aa3f-031c-40c2-ba48-25f588c04c01",
+        "ebe5a3b0-a5fb-4eb3-8a4d-eafd36d36e11",
+        "28166db2-a560-414a-a774-58f4f23be652",
+        "dd7505ed-5deb-4085-9731-85314e349f8c",
+        "75c4e943-690e-4d66-8d5f-ee15c4b1769e",
+        "279c1327-b0a2-409d-a7ca-1a25cbda077a",
+        "6752e6b2-7474-43f0-9b13-10f93dc3df4f",
+        "3f2da6e5-13a6-4255-97f8-c705bc998b95",
+        "1fc12d0d-7d34-4e6c-b7a6-85dfde662cad",
+        "4b48f444-f575-4797-82c0-999d49ee3ab3",
+        "a9fe1dc2-452d-46e4-8fde-1d4852d1862a",
+        "0a5f025b-1e04-44f0-a75d-c1802e3582f7",
+        "37d05f0f-6a87-4173-9087-b0b39fa82e19",
+        "b751b61d-aff2-4506-8164-5de764e22f45",
+        "22141739-2190-4906-8805-1bab657d8ab6",
+        "8b4ed3b3-b0d0-4c25-a619-c6bcbab6422c",
+        "3360870a-64b1-436a-b851-f3d7d84110d8"
+      ]
+    }
+  ],
+  "urls": [
+    "http://localhost:5173"
+  ],
+  "plugins": []
+}
